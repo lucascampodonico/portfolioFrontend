@@ -1,0 +1,69 @@
+
+<div class="lc-main-card-frame lc-sidebar" (scroll)="onScroll($event)">
+    <div class="lc-main-card">
+
+      <!-- card header -->
+      <div class="lc-mc-header">
+        <div class="lc-avatar-frame lc-mb-20">
+          <img class="lc-avatar" src="assets/img/avatar.jpg" alt="Avatar">
+          <div *ngIf="!isAuthenticated" class="lc-dot"></div>
+          <div *ngIf="isAuthenticated" class="lc-dot-edit" placement="end" ngbTooltip="Change avatar">
+            <i class="bx bx-edit"></i>
+          </div>
+
+        </div>
+        <div *ngIf="isAuthenticated" class="lc-dot-edit2" placement="top" ngbTooltip="Edit Profile">
+          <i class="bx bx-edit"></i>
+        </div>
+        <h5 class="lc-name lc-mb-15">Lucas Campodonico</h5>
+        <div class="lc-label">I`m
+          <span class="lc-typed-text">
+            <!-- Words for rotation: js/main.js line 34 -->
+          </span>
+        </div>
+      </div>
+      <!-- card header end -->
+
+      <div class="lc-divider lc-mb-20 lc-mt-20"></div>
+
+      <!-- sidebar social -->
+      <div class="lc-social">
+        <a href="https://www.linkedin.com/in/lucas-campodonico-aa15331b9/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+        <a href="https://github.com/lucascampodonico" target="_blank"><i class='bx bxl-github' ></i></a>
+        <a href="#." target="_blank"><i class='bx bxl-gitlab' ></i></a>
+        <a href="#." target="_blank"><i class='bx bxl-twitter' ></i></a>
+      </div>
+      <!-- sidebar social end -->
+
+      <div class="lc-divider lc-mb-20 lc-mt-20"></div>
+
+      <!-- info -->
+      <ul class="lc-table lc-mb-20">
+        <!-- country -->
+        <li>
+          <div class="lc-label">Residence:</div>
+          <div class="lc-label lc-label-light">Argentina</div>
+        </li>
+        <!-- city -->
+        <li>
+          <div class="lc-label">City:</div>
+          <div class="lc-label lc-label-light">Concordia</div>
+        </li>
+        <!-- age -->
+        <li>
+          <div class="lc-label">Age:</div>
+          <div class="lc-label lc-label-light">28</div>
+        </li>
+      </ul>
+      <!-- info end -->
+
+      <div class="lc-divider lc-mb-20 lc-mt-20"></div>
+
+      <!-- action button -->
+      <div class="text-center">
+        <a data-fancybox href="#lc-order" class="lc-btn">Contact me <i class="far fa-envelope"></i></a>
+      </div>
+      <!-- action button end -->
+
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+ng-scrollbar.my-scrollbar {
+  --scrollbar-border-radius: 7px;
+  --scrollbar-padding: 4px;
+  --scrollbar-viewport-margin: 0;
+  --scrollbar-track-color: transparent;
+  --scrollbar-wrapper-color: transparent;
+  --scrollbar-thumb-color: transparent;
+  --scrollbar-thumb-hover-color: #e9a617;
+  --scrollbar-size: 10px;
+  --scrollbar-hover-size: var(--scrollbar-size);
+  --scrollbar-thumb-transition: .4s ease-in-out;
+  --scrollbar-track-transition: .4s ease-in-out;
+
+    height: 100vh;
+    overflow: hidden;
+
+  }

@@ -1,0 +1,112 @@
+body{
+  background-color: #00151F !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+@media screen and (max-width:992px){
+
+  .col-lg-8{
+  position: relative;
+  z-index: 2;
+  }
+  .col-lg-4 .lc-banner-text{
+    display: block;
+    position: relative;
+    z-index: 2;
+    transform: translateY(-465px);
+  }
+  .lc-banner-text h1 {
+    font-weight: 700 !important;
+    font-size: 40px !important;
+  }
+  .lc-banner-text {
+    text-align: center;
+  }
+  .col-lg-8 .lc-banner-text{
+    display: none;
+  }
+}
+@media screen and (min-width:992px){
+  .col-lg-8 {
+    position: relative;
+    margin-top: -295px !important;
+    z-index: 2;
+  }
+  .col-lg-4 .lc-banner-text{
+    display: none;
+  }
+}
+ .lc-banner-text .lc-breadcrumbs {
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  border: solid 2px #fcfcfe;
+  background-color: transparent;
+  padding: 0 35px;
+  height: 45px;
+  align-items: center;
+  border-radius: 30px;
+}
+.lc-banner-text * {
+  color: #fcfcfe;
+  text-shadow: 0 1px 10px rgb(0 0 0 / 30%);
+}
+.lc-banner-text * {
+  color: #fcfcfe;
+  text-shadow: 0 1px 10px rgb(0 0 0 / 30%);
+}
+.lc-app-frame .lc-content{
+  margin-top: 40px !important;
+}
+.lc-banner-text .lc-breadcrumbs li {
+  padding-right: 20px;
+  list-style-type: none;
+  position: relative;
+}
+.lc-banner-text .lc-breadcrumbs li a:hover {
+  color: #AFB42B;
+}
+.lc-banner-text .lc-breadcrumbs li a {
+  transition: 0.4s ease-in-out;
+}
+a, a:hover {
+  text-decoration: none !important;
+}
+
+.lc-logo-text {
+  display: flex;
+}
+span.left {
+  display: flex;
+  padding: 5px 16px 7px 5px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+span.right {
+  font-size: 15px;
+  max-width: 100px;
+  overflow: hidden;
+  font-weight: 500;
+  display: inline-block;
+}
+.lc-logo-text span p{
+  margin:0;
+}
+.lc-logo-text span p:nth-child(2){
+  color: #fdb316;
+}
+
+
+.my-scrollbar {
+  --scrollbar-border-radius: 7px;
+  --scrollbar-padding: 4px;
+  --scrollbar-viewport-margin: 0;
+  --scrollbar-track-color: transparent;
+  --scrollbar-wrapper-color: transparent;
+  --scrollbar-thumb-color: #e9a617;
+  --scrollbar-thumb-hover-color: var(--scrollbar-thumb-color);
+  --scrollbar-size: 5px;
+  --scrollbar-hover-size: var(--scrollbar-size);
+  --scrollbar-thumb-transition: height ease-out 150ms, width ease-out 150ms;
+  --scrollbar-track-transition: height ease-out 150ms, width ease-out 150ms;
+}

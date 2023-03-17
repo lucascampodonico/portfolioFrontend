@@ -1,0 +1,55 @@
+<!-- top bar -->
+<div class="lc-top-bar">
+    <div class="container">
+      <div class="lc-left-side">
+        <!-- logo -->
+        <a routerLink="" routerLinkActive="" class="lc-logo-frame lc-anima-link">
+          <div class="lc-logo-text">
+            <span class="left">
+              <p>></p>
+              <p>_</p></span>
+            <span class="right">Argentina Programa</span>
+          </div>
+        </a>  
+        <!-- logo end -->
+      </div>
+      <div class="lc-right-side">
+
+        <!-- menu -->
+        <div class="lc-menu">
+          <nav>
+            <ul>
+              <li id="skills-menu">
+                <a style="cursor:pointer" (click)="scrollTo('#skills')">Skills</a>
+              </li>
+              <li id="history-menu">
+                <a style="cursor:pointer" (click)="scrollTo('#history')">History</a>
+              </li>
+              <li id="portfolio-menu">
+                <a style="cursor:pointer" (click)="scrollTo('#portfolio')">Portfolio</a>
+              </li>
+              <li id="contact-menu">
+                <a style="cursor:pointer" (click)="scrollTo('#contact')">Contact</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- menu end -->
+
+        <!-- mode switcher place -->
+        <div class="lc-mode-switcher-place"id="lc-mode-switcher-place" ></div>
+        <!-- mode switcher place end -->
+
+        <!-- action button -->
+        <a *ngIf="!isAuthenticated" style="cursor:pointer" (click)="openLogin()" class="lc-btn lc-btn-sm">Login<i class="bx bx-arrow-to-right"></i></a>
+        <!-- action button end -->
+
+        <!-- action button -->
+        <a *ngIf="isAuthenticated" style="cursor:pointer" (click)="openLogOut()" class="lc-btn lc-btn-sm">Logout<i class="bx bx-arrow-to-right"></i></a>
+        <!-- action button end -->
+
+      </div>
+      <div class="lc-menu-btn"><span></span></div>
+    </div>
+  </div>
+  <!-- top bar end -->

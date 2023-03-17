@@ -1,0 +1,67 @@
+          <!-- history -->
+          <div class="row" appInViewport>
+        
+            <!-- Employment -->
+            <div class="col-lg-6">
+              <h5 class="lc-mb-40 lc-title-with-divider">Employment History <span data-number="02"></span></h5>
+
+              <!-- timeline -->
+              <div class="lc-timeline">
+
+                <div class="lc-timeline-item lc-scroll-animation" *ngFor="let employment of employments">
+                  <div class="lc-timeline-mark-light"></div>
+                  <div class="lc-timeline-mark"></div>
+                  <div class="lc-a lc-timeline-content">
+                    
+                    <!-- edit buttons-->
+
+                    <button (click)="openUpdateEmployment(employment)" *ngIf="isAuthenticated" class="lc-edit-absolute-topright" placement="top" ngbTooltip="Edit skill">
+                      <i class="bx bx-edit"></i>
+                    </button>
+                    <button (click)="openDeleteEmployment(employment)" *ngIf="isAuthenticated" class="lc-delete-absolute-topright" placement="top" ngbTooltip="Delete skill">
+                      <i class="bx bx-x"></i>
+                    </button>
+
+                    <!-- edit buttons end-->
+
+                    <div class="lc-card-header">
+                      <div class="lc-left-side">
+                        <h6 class="lc-mb-15">{{ employment.name }}</h6>
+                        <div class="lc-text-sm lc-accent-color lc-mb-15"><i>{{ employment.dateOf }} - {{ employment.dateTo }}</i></div>
+                      </div>
+                    </div>
+                    <div class="lc-mb-20">{{ employment.description }}</div>
+                    <!-- <a data-fancybox="" href="files/diploma.jpg" class="lc-label lc-label-color">Diploma <i class="fas fa-arrow-right"></i></a> -->
+                  </div>
+                </div>
+
+              </div>
+              <!-- timeline end -->
+            </div>
+
+            <!-- Education body-->
+            <div class="col-lg-6">
+              <h5 class="lc-mb-40 lc-title-with-divider">Education History <span data-number="03"></span></h5>
+              <!-- timeline -->
+              <div class="lc-timeline">
+
+                <div class="lc-timeline-item lc-scroll-animation " *ngFor="let education of educations">
+                  <div class="lc-timeline-mark-light"></div>
+                  <div class="lc-timeline-mark"></div>
+                  <div class="lc-a lc-timeline-content">
+                    <div class="lc-card-header">
+                      <div class="lc-left-side">
+                        <h6 class="lc-mb-15">{{ education.name }}</h6>
+                        <div class="lc-text-sm lc-accent-color lc-mb-15"><i>{{ education.dateOf }} - {{ education.dateTo }}</i></div>
+                      </div>
+                    </div>
+                    <div class="lc-mb-20">{{ education.description }}</div>
+                    <!-- <a data-fancybox="" href="files/diploma.jpg" class="lc-label lc-label-color">Diploma <i class="fas fa-arrow-right"></i></a> -->
+                  </div>
+                </div>
+
+              </div>
+              <!-- timeline end -->
+            </div>
+          </div>
+          <!-- history end -->
