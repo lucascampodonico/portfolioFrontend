@@ -42,8 +42,17 @@ import { EmploymentsService } from "../../services/employments.service";
                       </div>
                   </div> 
                   <div class="col-6">
-                  <label class="form-label">Date To: </label>
-                    <div class="input-group">
+                    <div class="d-flex justify-content-between">
+                      <label class="form-label">Date To: </label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="toPresent" name="toPresent">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          present
+                        </label>
+                      </div>
+                    </div>
+                 
+                    <div class="input-group" *ngIf="!toPresent">
                       <input
                         class="form-control"
                         placeholder="yyyy-mm-dd"
@@ -73,12 +82,20 @@ import { EmploymentsService } from "../../services/employments.service";
 
     dateOf: any;
     dateTo: any;
+    toPresent:boolean = false;
 
       constructor(public modal: NgbActiveModal, private employmentsService: EmploymentsService) {}
 
       ngOnInit(){
         let dateOf = this.employment.dateOf.split('-');
-        let dateTo = this.employment.dateTo.split('-');
+        let dateTo = '';
+
+        if(this.employment.dateTo === 'present'){
+          this.toPresent = true;
+        } else {
+          dateTo = this.employment.dateTo.split('-');
+        }
+        
   
        this.dateOf = {
           year: parseInt(dateOf[0]),
@@ -94,7 +111,13 @@ import { EmploymentsService } from "../../services/employments.service";
     
     saveChanges(){
       this.employment.dateOf = `${this.dateOf.year}-${padNumber(this.dateOf.month)}-${padNumber(this.dateOf.day)}`;
-      this.employment.dateTo = `${this.dateTo.year}-${this.dateTo.month}-${this.dateTo.day}`;
+      
+      if(this.toPresent){
+        this.employment.dateTo = 'present';
+      } else {
+        this.employment.dateTo = `${this.dateTo.year}-${this.dateTo.month}-${this.dateTo.day}`;
+      }
+      
       // this.employmentsService.updateEmployment(this.employmentId, this.employment)
       this.modal.close('Ok click')
     }
