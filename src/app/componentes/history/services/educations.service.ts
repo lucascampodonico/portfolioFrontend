@@ -9,15 +9,15 @@ export class EducationsService {
     {
       id: 1,
       name: 'UNER',
-      dateOf: '11-10-2010',
-      dateTo: '12-01-2015',
+      dateOf: '2010-10-11',
+      dateTo: '2015-01-12',
       description: 'Licensed in Systems'
     },
     {
       id: 2,
       name: 'Udemy',
-      dateOf: '11-05-2021',
-      dateTo: '12-01-2023',
+      dateOf: '2021-05-11',
+      dateTo: '2023-01-12',
       description: 'Multiple Courses'
     }
   ];

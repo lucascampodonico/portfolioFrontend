@@ -230,8 +230,8 @@ button
 }
 .lc-btn:hover {
   color: #fcfcfe;
-  background-color: #c0ca33;
-  border: solid 2px #c0ca33;
+  background-color: #033f5a;
+  border: solid 2px #012d40;
 }
 .lc-btn.lc-btn-border {
   border: solid 2px #fcfcfe;
@@ -324,6 +324,24 @@ main card
   background-color: #e9a617;
 }
 
+.lc-dot-edit{
+  border: 3px solid #ffffff;
+}
+.lc-dot-edit2{
+  border: 3px solid #ffffff;
+}
+.lc-edit-absolute-topright {
+  border: 3px solid #ffffff;
+}
+.lc-delete-absolute-topright {
+  border: 3px solid #ffffff;
+}
+.lc-edit-relative {
+  border: 3px solid #ffffff;
+}
+.lc-delete-relative {
+  border: 3px solid #ffffff;
+}
 /***************************
 
 icon box

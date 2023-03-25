@@ -1428,7 +1428,6 @@ main card
   color: white;
   border-radius: 40px;
   font-size: 15px;
-  border: 3px solid #00283a;
   padding: 5px 8px 5px 8px;
   background: #e9a617;
   transition: 0.3s ease-in-out;
@@ -1447,7 +1446,6 @@ main card
   color: white;
   border-radius: 40px;
   font-size: 10px;
-  border: 3px solid #00283a;
   padding: 5px 8px 5px 8px;
   background: #e9a617;
   transition: 0.3s ease-in-out;
@@ -1466,7 +1464,6 @@ main card
   color: white;
   border-radius: 40px;
   font-size: 10px;
-  border: 3px solid #00283a;
   padding: 5px 8px 5px 8px;
   background: #e9a617;
   transition: 0.3s ease-in-out;
@@ -1485,7 +1482,6 @@ main card
   color: white;
   border-radius: 40px;
   font-size: 10px;
-  border: 3px solid #00283a;
   padding: 5px 8px 5px 8px;
   background: #e91717;
   transition: 0.3s ease-in-out;
@@ -1505,7 +1501,6 @@ main card
     color: white;
     border-radius: 40px;
     font-size: 10px;
-    border: 3px solid #00283a;
     padding: 4px 2px 2px 2px;
     background: #e9a617;
     transition: 0.3s ease-in-out;
@@ -1523,7 +1518,6 @@ main card
   color: white;
   border-radius: 40px;
   font-size: 10px;
-  border: 3px solid #00283a;
   padding: 4px 2px 2px 2px;
   background: #e91717;
   transition: 0.3s ease-in-out;

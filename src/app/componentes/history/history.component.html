@@ -5,20 +5,22 @@
             <div class="col-lg-6">
               <h5 class="lc-mb-40 lc-title-with-divider">Employment History <span data-number="02"></span></h5>
 
+              <button *ngIf="isAuthenticated" (click)="openCreateEmployment()" class="mb-2 lc-btn">Add Employment</button>
+
               <!-- timeline -->
               <div class="lc-timeline">
 
-                <div class="lc-timeline-item lc-scroll-animation" *ngFor="let employment of employments">
+                <div class="lc-timeline-item lc-scroll-animation" *ngFor="let employment of employments; ">
                   <div class="lc-timeline-mark-light"></div>
                   <div class="lc-timeline-mark"></div>
                   <div class="lc-a lc-timeline-content">
                     
                     <!-- edit buttons-->
 
-                    <button (click)="openUpdateEmployment(employment)" *ngIf="isAuthenticated" class="lc-edit-absolute-topright" placement="top" ngbTooltip="Edit skill">
+                    <button (click)="openUpdateEmployment(employment)" *ngIf="isAuthenticated" class="lc-edit-absolute-topright" placement="top" ngbTooltip="Edit Employment">
                       <i class="bx bx-edit"></i>
                     </button>
-                    <button (click)="openDeleteEmployment(employment)" *ngIf="isAuthenticated" class="lc-delete-absolute-topright" placement="top" ngbTooltip="Delete skill">
+                    <button (click)="openDeleteEmployment(employment)" *ngIf="isAuthenticated" class="lc-delete-absolute-topright" placement="top" ngbTooltip="Delete Employment">
                       <i class="bx bx-x"></i>
                     </button>
 
@@ -42,6 +44,9 @@
             <!-- Education body-->
             <div class="col-lg-6">
               <h5 class="lc-mb-40 lc-title-with-divider">Education History <span data-number="03"></span></h5>
+
+              <button *ngIf="isAuthenticated" (click)="openCreateEducation()" class="mb-2 lc-btn">Add Education</button>
+
               <!-- timeline -->
               <div class="lc-timeline">
 
@@ -49,6 +54,18 @@
                   <div class="lc-timeline-mark-light"></div>
                   <div class="lc-timeline-mark"></div>
                   <div class="lc-a lc-timeline-content">
+
+                                        <!-- edit buttons-->
+
+                                        <button (click)="openUpdateEducation(education)" *ngIf="isAuthenticated" class="lc-edit-absolute-topright" placement="top" ngbTooltip="Edit Education">
+                                          <i class="bx bx-edit"></i>
+                                        </button>
+                                        <button (click)="openDeleteEducation(education)" *ngIf="isAuthenticated" class="lc-delete-absolute-topright" placement="top" ngbTooltip="Delete Education">
+                                          <i class="bx bx-x"></i>
+                                        </button>
+                    
+                                        <!-- edit buttons end-->
+
                     <div class="lc-card-header">
                       <div class="lc-left-side">
                         <h6 class="lc-mb-15">{{ education.name }}</h6>

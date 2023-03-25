@@ -2,15 +2,15 @@ import { CommonModule } from "@angular/common";
 import { Component, Input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgbActiveModal, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
-import { EmploymentsService } from "../../services/employments.service";
+import { EducationsService } from "../../services/educations.service";
 
 @Component({ 
-    selector: 'edit-employment-modal',
+    selector: 'edit-education-modal',
     imports: [FormsModule, NgbDatepickerModule, CommonModule],
     standalone: true,
     template: `
             <div class="modal-header">
-              <h4 class="modal-title" id="modal-title">{{title}} Employment</h4>
+              <h4 class="modal-title" id="modal-title">{{title}} Education</h4>
               <button
                 type="button"
                 class="btn-close"
@@ -21,8 +21,8 @@ import { EmploymentsService } from "../../services/employments.service";
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label class="form-label">Employment: </label>
-                <input [(ngModel)]="employment.name" class="form-control" name="employment.name" />
+                <label class="form-label">Education: </label>
+                <input [(ngModel)]="education.name" class="form-control" name="education.name" />
               </div>
 
               <div class="row">
@@ -67,7 +67,7 @@ import { EmploymentsService } from "../../services/employments.service";
             </div> 
               <div class="mb-3">
                 <label class="form-label">Description: </label>
-                <textarea [(ngModel)]="employment.description" class="form-control" name="employment.description"></textarea>
+                <textarea [(ngModel)]="education.description" class="form-control" name="education.description"></textarea>
               </div>
             </div>
             <div class="modal-footer">
@@ -76,66 +76,59 @@ import { EmploymentsService } from "../../services/employments.service";
             </div>
     `,
   })
-  export class EditEmploymentModal {
+  export class EditEducationModal {
   
-    @Input() employment!: any;
+    @Input() education!: any;
     @Input() title!: string;
 
-    toPresent:boolean = false;
     dateOf: any;
     dateTo: any;
+    toPresent:boolean = false;
 
-
-      constructor(public modal: NgbActiveModal, private employmentsService: EmploymentsService) {}
+      constructor(public modal: NgbActiveModal, private educationsService: EducationsService) {}
 
       ngOnInit(){
-        if(this.employment){
-          let dateOf = this.employment.dateOf.split('-');
+        if(this.education){
+          let dateOf = this.education.dateOf.split('-');
           let dateTo = '';
 
-          if(this.employment.dateTo === 'present'){
+          if(this.education.dateTo === 'present'){
             this.toPresent = true;
           } else {
-            dateTo = this.employment.dateTo.split('-');
+            dateTo = this.education.dateTo.split('-');
           }
           
-          
-            this.dateOf = {
-              year: parseInt(dateOf[0]),
-              month: parseInt(dateOf[1]),
-              day: parseInt(dateOf[2]),
-            }
-            this.dateTo = {
-              year: parseInt(dateTo[0]),
-              month: parseInt(dateTo[1]),
-              day: parseInt(dateTo[2]),
-            }
+    
+        this.dateOf = {
+            year: parseInt(dateOf[0]),
+            month: parseInt(dateOf[1]),
+            day: parseInt(dateOf[2]),
+          }
+          this.dateTo = {
+            year: parseInt(dateTo[0]),
+            month: parseInt(dateTo[1]),
+            day: parseInt(dateTo[2]),
+          }
         } else {
-          this.employment = {
+          this.education = {
             name: '',
             description: '',
             dateOf: '',
             dateTo: ''
           }
         }
-       
       }
     
     saveChanges(){
-      this.employment.dateOf = `${this.dateOf.year}-${padNumber(this.dateOf.month)}-${padNumber(this.dateOf.day)}`;
+      this.education.dateOf = `${this.dateOf.year}-${padNumber(this.dateOf.month)}-${padNumber(this.dateOf.day)}`;
       
       if(this.toPresent){
-        this.employment.dateTo = 'present';
+        this.education.dateTo = 'present';
       } else {
-        this.employment.dateTo = `${this.dateTo.year}-${this.dateTo.month}-${this.dateTo.day}`;
+        this.education.dateTo = `${this.dateTo.year}-${this.dateTo.month}-${this.dateTo.day}`;
       }
       
-      if(this.employment.id){
-        this.employmentsService.updateEmployment(this.employment.id, this.employment);
-      } else {
-        this.employmentsService.createEmployment(this.employment);
-      }
-      
+      // this.educationsService.updateEducation(this.educationId, this.education)
       this.modal.close('Ok click')
     }
 
