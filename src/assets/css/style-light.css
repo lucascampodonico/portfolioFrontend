@@ -75,7 +75,7 @@ menu
   color: #00283a !important;
 }
 .lc-menu nav ul li a:hover {
-  color: #e9a617;
+  color: #e9a617 !important;
 }
 .lc-menu nav ul li ul {
   background-color: #fcfcfe;
