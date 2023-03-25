@@ -16,8 +16,8 @@ export class EmploymentsService {
     {
       id: 2,
       name: 'Rigelec',
-      dateOf: '11-10-2015',
-      dateTo: '01-02-2022',
+      dateOf: '2015-10-15',
+      dateTo: '2022-02-01',
       description: 'Full-stack Developer and SysAdmin'
     }
   ];

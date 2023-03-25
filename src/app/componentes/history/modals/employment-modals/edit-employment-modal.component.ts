@@ -24,28 +24,38 @@ import { EmploymentsService } from "../../services/employments.service";
                 <label class="form-label">Employment: </label>
                 <input [(ngModel)]="employment.name" class="form-control" name="employment.name" />
               </div>
-            <div class="input-group">
-                <input
-                  class="form-control"
-                  placeholder="yyyy-mm-dd"
-                  name="dateOf"
-                  [(ngModel)]="dateOf"
-                  ngbDatepicker
-                  #d2="ngbDatepicker"
-                />
-                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()" type="button"></button>
-              </div>   
-              <div class="input-group">
-                <input
-                  class="form-control"
-                  placeholder="yyyy-mm-dd"
-                  name="dateTo"
-                  [(ngModel)]="dateTo"
-                  ngbDatepicker
-                  #d="ngbDatepicker"
-                />
-                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
-              </div>      
+
+              <div class="row">
+              
+                  <div class="col-6">
+                  <label class="form-label">Date Of: </label>
+                    <div class="input-group">
+                        <input
+                          class="form-control"
+                          placeholder="yyyy-mm-dd"
+                          name="dateOf"
+                          [(ngModel)]="dateOf"
+                          ngbDatepicker
+                          #d2="ngbDatepicker"
+                        />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()" type="button"></button>
+                      </div>
+                  </div> 
+                  <div class="col-6">
+                  <label class="form-label">Date To: </label>
+                    <div class="input-group">
+                      <input
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        name="dateTo"
+                        [(ngModel)]="dateTo"
+                        ngbDatepicker
+                        #d="ngbDatepicker"
+                      />
+                      <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+                    </div>   
+                  </div>  
+            </div> 
               <div class="mb-3">
                 <label class="form-label">Description: </label>
                 <textarea [(ngModel)]="employment.description" class="form-control" name="employment.description"></textarea>
@@ -68,7 +78,7 @@ import { EmploymentsService } from "../../services/employments.service";
 
       ngOnInit(){
         let dateOf = this.employment.dateOf.split('-');
-        let dateTo = this.employment.dateOf.split('-');
+        let dateTo = this.employment.dateTo.split('-');
   
        this.dateOf = {
           year: parseInt(dateOf[0]),
