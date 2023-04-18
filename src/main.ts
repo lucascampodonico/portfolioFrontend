@@ -8,6 +8,7 @@ import { routes } from './app/app-routing.module'
 import { provideAnimations} from '@angular/platform-browser/animations'
 
 import { environment } from './environments/environment';
+import { provideHttpClient } from '@angular/common/http';
 
 
 if (environment.production) {
@@ -16,6 +17,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideHttpClient(),
     provideAnimations(),
     provideRouter(routes)
   ]

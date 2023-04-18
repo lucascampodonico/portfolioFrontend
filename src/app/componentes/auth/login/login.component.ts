@@ -4,6 +4,7 @@ import { EmailValidator, FormBuilder, FormGroup, ReactiveFormsModule, Validators
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -29,14 +30,15 @@ export class LoginComponent {
   }
 
   login(){
-    const token = this.authService.signIn(this.loginForm.value.email, this.loginForm.value.password);
-    
-      localStorage.setItem('token', token.token)
-      this.modal.close()
-      this.router.navigateByUrl(this.router.url)
-      setTimeout(() => {
-        window.location.reload()
-      }, 100);
+      this.authService.signIn(this.loginForm.value.email, this.loginForm.value.password).subscribe(
+        {next: d=> console.log(d)})
+      
+      // localStorage.setItem('token', token.token)
+      // this.modal.close()
+      // this.router.navigateByUrl(this.router.url)
+      // setTimeout(() => {
+      //   window.location.reload()
+      // }, 100);
     }
 
    

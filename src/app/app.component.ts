@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgScrollbar, NgScrollbarModule } from 'ngx-scrollbar';
 
 import { slideInAnimation } from './animations';
@@ -30,7 +29,7 @@ import { InViewportDirective } from './inViewPort.directive';
     ProjectsComponent,
     FooterComponent,
     TarjetaComponent,
-    NgScrollbarModule,
+    NgScrollbarModule
   ],
   animations: [slideInAnimation],
 })

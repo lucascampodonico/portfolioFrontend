@@ -1,0 +1,1 @@
+export const API_URL = 'https://portfolio-backend-yx5v.onrender.com/api/v1/'
