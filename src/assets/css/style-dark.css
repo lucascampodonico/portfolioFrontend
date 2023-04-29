@@ -501,4 +501,17 @@ fancybox
   color: #dedee0;
 }
 
+
+/* Toastify */
+
+.info-toast{
+  background: #02162b;
+  color: white;
+}
+
+.error-toast{
+  background-color: #de1010;
+  color: white;
+}
+
 /*# sourceMappingURL=style-dark.css.map */

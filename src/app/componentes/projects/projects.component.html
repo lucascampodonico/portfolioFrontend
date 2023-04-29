@@ -4,66 +4,31 @@
       <!-- title -->
       <h5 class="lc-mb-40 lc-title-with-divider">Projects <span data-number="04"></span></h5>
       <!-- title end-->
-      <div class="col-lg-6">
-        
-        <!-- portfolio item -->
-        <a target="_blank" href="https://app.constru.com.ar" class="lc-portfolio-item lc-scroll-animation lc-active-el" data-cat="card">
-          <div class="lc-cover-frame">
-            <img class="lc-cover" src="assets/img/projects/project-1.png" alt="item">
-          </div>
-          <div class="lc-item-description">
-            <h6>App BtoB</h6>
-            <div class="lc-zoom-icon">
-              <i class="bx bx-search"></i>
-            </div>
-          </div>
-        </a>
-        <!-- portfolio item end -->
 
-      </div>
-      <div class="col-lg-6">
+      <button *ngIf="isAuthenticated" (click)="openCreateProject()" class="mb-2 lc-btn">Add Project</button>
+
+      <div class="col-lg-6" *ngFor="let project of projects">
+
+     
 
         <!-- portfolio item -->
-        <a data-fancybox="portfolio" href="assets/img/projects/project-2.png" class="lc-portfolio-item lc-scroll-animation lc-active-el" data-cat="icon">
+        <a data-fancybox="portfolio" href="{{project.imageUrl}}" class="lc-portfolio-item lc-scroll-animation lc-active-el" data-cat="card">
           <div class="lc-cover-frame">
-            <img class="lc-cover" src="assets/img/projects/project-2.png" alt="item">
+
+                <!-- edit buttons-->
+
+                <button (click)="openUpdateProject(project)" *ngIf="isAuthenticated" class="lc-edit-absolute-topright" placement="top" ngbTooltip="Edit Project">
+                  <i class="bx bx-edit"></i>
+                </button>
+                <button (click)="openDeleteProject(project)" *ngIf="isAuthenticated" class="lc-delete-absolute-topright" placement="top" ngbTooltip="Delete Project">
+                  <i class="bx bx-x"></i>
+                </button>
+
+                <!-- edit buttons end-->
+            <img class="lc-cover" src="{{project.imageUrl}}" alt="item">
           </div>
           <div class="lc-item-description">
-            <h6>My resume App</h6>
-            <div class="lc-zoom-icon">
-                <i class="bx bx-search"></i>
-            </div>
-          </div>
-        </a>
-        <!-- portfolio item end -->
-
-      </div>
-      <div class="col-lg-6">
-
-        <!-- portfolio item -->
-        <a data-fancybox="portfolio" href="assets/img/projects/project-3.png" class="lc-portfolio-item lc-scroll-animation lc-active-el" data-cat="card">
-          <div class="lc-cover-frame">
-            <img class="lc-cover" src="assets/img/projects/project-3.png" alt="item">
-          </div>
-          <div class="lc-item-description">
-            <h6>Self-Magnament App</h6>
-            <div class="lc-zoom-icon">
-              <i class="bx bx-search"></i>
-            </div>
-          </div>
-        </a>
-        <!-- portfolio item end -->
-
-      </div>
-      <div class="col-lg-6">
-
-        <!-- portfolio item -->
-        <a data-fancybox="portfolio" href="assets/img/projects/project-4.jpg" class="lc-portfolio-item lc-scroll-animation lc-active-el" data-cat="app">
-          <div class="lc-cover-frame">
-            <img class="lc-cover" src="assets/img/projects/project-4.jpg" alt="item">
-          </div>
-          <div class="lc-item-description">
-            <h6>E-Learning</h6>
+            <h6>{{ project.nameProject }}</h6>
             <div class="lc-zoom-icon">
               <i class="bx bx-search"></i>
             </div>

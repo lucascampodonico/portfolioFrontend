@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmailValidator, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import Toastify from 'toastify-js'
 
 @Component({
   selector: 'app-login',
@@ -31,14 +31,28 @@ export class LoginComponent {
 
   login(){
       this.authService.signIn(this.loginForm.value.email, this.loginForm.value.password).subscribe(
-        {next: d=> console.log(d)})
+        {
+          next: d=> {
+            localStorage.setItem('token', d.token)
+            this.modal.close()
+            this.router.navigateByUrl(this.router.url)
+            setTimeout(() => {
+              window.location.reload()
+            }, 100);
+          },
+          error: (e) => {
+            console.log(e)
+              Toastify({
+              text: e.error.mensaje,
+              className: "warning",
+              style: {
+                background: "linear-gradient(to right, red, #911e29)",
+              }
+              }).showToast( )
+          } 
+        })
+     
       
-      // localStorage.setItem('token', token.token)
-      // this.modal.close()
-      // this.router.navigateByUrl(this.router.url)
-      // setTimeout(() => {
-      //   window.location.reload()
-      // }, 100);
     }
 
    

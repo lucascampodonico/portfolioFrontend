@@ -15,7 +15,7 @@
           "options": {
             "allowedCommonJsDependencies": [
               "lodash"
-           ],
+            ],
             "outputPath": "dist/portfolio-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -29,8 +29,7 @@
               "node_modules/boxicons/css/boxicons.min.css",
               "src/styles.css"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -101,7 +100,14 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "portfolioFrontend:build:production",
+            "firebaseProject": "lucas-campodonico",
+            "firebaseHostingSite": "lucas-campodonico"
+          }
         }
       }
     }

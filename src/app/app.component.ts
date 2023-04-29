@@ -3,7 +3,6 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgScrollbar, NgScrollbarModule } from 'ngx-scrollbar';
 
-import { slideInAnimation } from './animations';
 import { AuthService } from './componentes/auth/auth.service';
 import { ContactComponent } from './componentes/contact/contact.component';
 import { HistoryComponent } from './componentes/history/history.component';
@@ -29,9 +28,8 @@ import { InViewportDirective } from './inViewPort.directive';
     ProjectsComponent,
     FooterComponent,
     TarjetaComponent,
-    NgScrollbarModule
-  ],
-  animations: [slideInAnimation],
+    NgScrollbarModule,
+  ]
 })
 export class AppComponent {
   @ViewChild('scrollable') scrollable!: NgScrollbar;
