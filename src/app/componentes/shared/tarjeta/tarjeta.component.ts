@@ -13,11 +13,16 @@ import { AuthService } from '../../auth/auth.service';
 export class TarjetaComponent implements OnInit {
 
   estaEnLaPosicionSuperior = false;
-  isAuthenticated: boolean;
+  isAuthenticated!: boolean;
 
   constructor(private modal: NgbModal, private authService: AuthService){
 
-    this.isAuthenticated = this.authService.verifyToken();
+    this.authService.verifyTokens().subscribe(
+      {
+        next: res => this.isAuthenticated = true,
+        error: error => this.isAuthenticated = false,
+      }
+    )
   }
 
   ngOnInit(): void {

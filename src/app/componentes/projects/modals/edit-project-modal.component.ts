@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { Component, inject, Input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgbActiveModal, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
-import { Project } from "../project.interface";
 import { ProjectsService } from "../projects.service";
-import { getDownloadURL, ref, Storage, uploadBytes, uploadBytesResumable } from "@angular/fire/storage";
+import { getDownloadURL, ref, Storage, uploadBytesResumable } from "@angular/fire/storage";
+import Toastify from "toastify-js";
 
 @Component({ 
     selector: 'edit-project-modal',
@@ -24,7 +24,7 @@ import { getDownloadURL, ref, Storage, uploadBytes, uploadBytesResumable } from 
             <div class="modal-body">
               <div class="mb-3">
                 <label class="form-label">Project: </label>
-                <input [(ngModel)]="project.nameProject" class="form-control" name="project.nameProject" />
+                <input [(ngModel)]="nameProject" class="form-control" name="project.nameProject" />
               </div>
               <div class="mb-3">
                 <label class="form-label">Imagen: </label>
@@ -42,9 +42,12 @@ import { getDownloadURL, ref, Storage, uploadBytes, uploadBytesResumable } from 
     @Input() project!: any;
     @Input() title!: string;
 
+    nameProject!: string;
 
-      constructor(public modal: NgbActiveModal, private projectsService: ProjectsService, private storage: Storage) {}
-    
+    public projectsService = inject(ProjectsService);
+    public modal = inject(NgbActiveModal);
+    public storage = inject(Storage);
+
       ngOnInit(){
         if(!this.project){
           this.project = {
@@ -54,21 +57,9 @@ import { getDownloadURL, ref, Storage, uploadBytes, uploadBytesResumable } from 
         }
       }
 
-      onFileChange($event: any) {
-        const file = $event.target.files[0]; // Obtén el archivo seleccionado por el usuario
-        if(file){
-          
-          const task = ref(this.storage, file.name);
-          
-          uploadBytesResumable(task, file).then((d)=>{
-            console.log(d)
-          })
-  
-        }
-      }
-
-
     async saveChanges(upload:any){
+
+      this.project.nameProject = this.nameProject;
       const file = upload.files[0];
       if(file){
           
@@ -84,6 +75,7 @@ import { getDownloadURL, ref, Storage, uploadBytes, uploadBytesResumable } from 
               this.projectsService.createProject(this.project).subscribe({
                 next: project => {
                   console.log("projecto creado",project)
+                  this.projectsService.projectCreated.emit(project)
                 },
                 error: e => {
                   console.log(e)
@@ -93,21 +85,25 @@ import { getDownloadURL, ref, Storage, uploadBytes, uploadBytesResumable } from 
               this.projectsService.updateProject(this.project.id, this.project).subscribe({
                   next: updated => {
                   console.log("updated",updated)
+                  this.projectsService.projectUpdated.emit(updated)
                   }
               })
             }
           }
         })
-        
+
+        this.modal.close('Ok click')
+
       } else {
-        this.projectsService.updateProject(this.project.id, this.project).subscribe({
-          next: updated => {
-          console.log("updated sin imagen",updated)
+        Toastify({
+          text:"Por favor agrega una imagen.",
+          className: "info",
+          position: "center",
+          style: {
+            background: "linear-gradient(to right, #e9a617, #e9a617)",
           }
-      })
+          }).showToast()
       }
-      
-      this.modal.close('Ok click')
     }
 
 

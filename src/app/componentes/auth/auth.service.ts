@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { API_URL } from 'src/config';
 
 @Injectable({
@@ -8,7 +8,13 @@ import { API_URL } from 'src/config';
 })
 export class AuthService {
 
-constructor(private http: HttpClient) { }
+  result:any;
+  token: any;
+
+constructor(private http: HttpClient) { 
+  this.token = localStorage.getItem('token')
+}
+
 
   signIn(email: string, password:string):Observable<any>{
     let data = {
@@ -20,14 +26,14 @@ constructor(private http: HttpClient) { }
 
   }
 
-    verifyToken(){
+  verifyTokens():Observable<boolean>{
 
-      const token = localStorage.getItem('token')
-      if(token != undefined && token != ''){
-        return true
-      } else {
-        return false
-      }
-
+        const headers = new HttpHeaders().set("Authorization", "Bearer "+ this.token)
+        return this.http.get(API_URL+"user/verify", {headers: headers, observe: "response"})
+        .pipe(
+          map((res:any) => {return res.status === 200})
+          )
+      
     }
+
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { ProjectsService } from "../projects.service";
@@ -30,20 +30,22 @@ import { ProjectsService } from "../projects.service";
 })
 export class DeleteProjectModal {
 
-  @Input() project!: any;
+	@Input() project!: any;
 
-	constructor(public modal: NgbActiveModal, private projectsService: ProjectsService) {
-  }
+	public projectsService = inject(ProjectsService)
+	public modal = inject(NgbActiveModal)
 
-  saveChanges(){
-    this.projectsService.deleteProjectById(this.project.id).subscribe({
-	next: res =>{
-		console.log(res)
-	},
-	error: e =>{
-		console.log(e)
-	}})
-    this.modal.close('Ok click')
-  }
+	saveChanges(){
+		this.projectsService.deleteProjectById(this.project.id).subscribe({
+		next: res =>{
+			this.projectsService.projectDeleted.emit(this.project)
+			console.log(res)
+		},
+		error: e =>{
+			console.log(e)
+		}})
+		this.modal.close('Ok click')
+	}
 	
 }
+

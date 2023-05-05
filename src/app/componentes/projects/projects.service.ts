@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL } from 'src/config';
 import { Project } from './project.interface';
@@ -12,9 +12,11 @@ export class ProjectsService {
 private token = localStorage.getItem('token');
 private headers = new HttpHeaders().set('Authorization', 'Bearer '+this.token);
 
-constructor(private http: HttpClient) { 
+projectDeleted = new EventEmitter();
+projectCreated = new EventEmitter();
+projectUpdated = new EventEmitter();
 
-}
+private http = inject(HttpClient);
 
 
   uploadFile(formData: FormData):Observable<any>{

@@ -1,6 +1,5 @@
-
-    <!-- portfolio -->
-    <div class="row">
+<!-- portfolio -->
+<div class="row">
       <!-- title -->
       <h5 class="lc-mb-40 lc-title-with-divider">Projects <span data-number="04"></span></h5>
       <!-- title end-->
@@ -12,21 +11,26 @@
      
 
         <!-- portfolio item -->
-        <a data-fancybox="portfolio" href="{{project.imageUrl}}" class="lc-portfolio-item lc-scroll-animation lc-active-el" data-cat="card">
+
+        <div  class="lc-portfolio-item lc-scroll-animation lc-active-el" data-cat="card">
           <div class="lc-cover-frame">
 
-                <!-- edit buttons-->
+             <!-- edit buttons-->
 
-                <button (click)="openUpdateProject(project)" *ngIf="isAuthenticated" class="lc-edit-absolute-topright" placement="top" ngbTooltip="Edit Project">
-                  <i class="bx bx-edit"></i>
-                </button>
-                <button (click)="openDeleteProject(project)" *ngIf="isAuthenticated" class="lc-delete-absolute-topright" placement="top" ngbTooltip="Delete Project">
-                  <i class="bx bx-x"></i>
-                </button>
+              <button (click)="openUpdateProject(project)" *ngIf="isAuthenticated" class="lc-edit-absolute-topright" placement="bottom" ngbTooltip="Edit">
+                <i class="bx bx-edit"></i>
+              </button>
+              <button (click)="openDeleteProject(project)" *ngIf="isAuthenticated" class="lc-delete-absolute-topright" placement="bottom" ngbTooltip="Delete">
+                <i class="bx bx-x"></i>
+              </button>
 
-                <!-- edit buttons end-->
-            <img class="lc-cover" src="{{project.imageUrl}}" alt="item">
+              <!-- edit buttons end-->
+               <a data-fancybox="portfolio" href="{{project.imageUrl}}">
+                  <img class="lc-cover" src="{{project.imageUrl}}" alt="item">
+                </a>
           </div>
+        
+          <a data-fancybox="portfolio" href="{{project.imageUrl}}">
           <div class="lc-item-description">
             <h6>{{ project.nameProject }}</h6>
             <div class="lc-zoom-icon">
@@ -34,8 +38,11 @@
             </div>
           </div>
         </a>
+        </div>
         <!-- portfolio item end -->
 
+       
+
       </div>
-    </div>
+</div>
     <!-- portfolio end -->

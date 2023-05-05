@@ -38,13 +38,14 @@ export class AppComponent {
   isAuthenticated = false;
   
   constructor(private authService: AuthService){
-
-   this.isAuthenticated = this.authService.verifyToken();
+    this.authService.verifyTokens().subscribe(
+      {
+        next: res => this.isAuthenticated = true,
+        error: error => this.isAuthenticated = false,
+      }
+    )
   }
 
-  ngOnInit() {
-    
-  }
   ngAfterViewInit() {
     this.scrollable.scrolled.subscribe((e) => {
       applyClassToXWhenYVisible('current-menu-item', 'contact-menu', 'contact'),

@@ -21,10 +21,15 @@ import { DeleteEducationModal } from './modals/education-modals/delete-education
 })
 export class HistoryComponent {
 
-    isAuthenticated: boolean;
+    isAuthenticated!: boolean;
 
     constructor( private _employmentsService: EmploymentsService, private _educationsService: EducationsService, private authService: AuthService, private modal: NgbModal ){
-      this.isAuthenticated = this.authService.verifyToken()
+      this.authService.verifyTokens().subscribe(
+        {
+          next: res => this.isAuthenticated = true,
+          error: error => this.isAuthenticated = false,
+        }
+      )
     }
 
     get employments(){

@@ -15,12 +15,12 @@
                       <div class="col-lg-12">
                         <ul class="lc-list">
                           <li *ngFor="let skill of skills">
-                            <span>{{skill.skill}}</span>
+                            <span>{{skill.nameSkill}}</span>
 
-                            <button (click)="openUpdateSkill(skill.id, skill.skill)" *ngIf="isAuthenticated" class="lc-edit-relative" placement="top" ngbTooltip="Edit skill">
+                            <button (click)="openUpdateSkill(skill)" *ngIf="isAuthenticated" class="lc-edit-relative" placement="top" ngbTooltip="Edit">
                               <i class="bx bx-edit"></i>
                             </button>
-                            <button (click)="openDeleteSkill(skill.id, skill.skill)" *ngIf="isAuthenticated" class="lc-delete-relative" placement="top" ngbTooltip="Delete skill">
+                            <button (click)="openDeleteSkill(skill)" *ngIf="isAuthenticated" class="lc-delete-relative" placement="top" ngbTooltip="Delete">
                               <i class="bx bx-x"></i>
                             </button>
                           </li>

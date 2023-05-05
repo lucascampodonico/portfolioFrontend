@@ -9,7 +9,7 @@ import { SkillsService } from "../skills.service";
     standalone: true,
     template: `
             <div class="modal-header">
-              <h4 class="modal-title" id="modal-title">Update Skillname</h4>
+              <h4 class="modal-title" id="modal-title">{{title}} Skillname</h4>
               <button
                 type="button"
                 class="btn-close"
@@ -20,7 +20,7 @@ import { SkillsService } from "../skills.service";
             </div>
             <div class="modal-body">
               <span>Skillname: </span>
-              <input [(ngModel)]="skillName" name="skillName" value="{{skillName}}"/>
+              <input [(ngModel)]="nameSkill" name="skillName" value="{{skill.nameSkill}}"/>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
@@ -30,14 +30,36 @@ import { SkillsService } from "../skills.service";
   })
   export class EditSkillModal {
   
-    @Input() skillId!: number;
-    @Input() skillName!: string;
-  
+    @Input() skill!: any;
+    @Input() title!: string;
+    
+    nameSkill!:string;
       constructor(public modal: NgbActiveModal, private skillsService: SkillsService) {
+    }
+
+    ngOnInit(){
+      if(!this.skill){
+        this.skill = {
+          skill: "",
+        }
+      }
     }
   
     saveChanges(){
-      this.skillsService.updateSkill(this.skillId, this.skillName)
+
+      this.skill.nameSkill = this.nameSkill;
+
+      if(!this.skill.id){
+        this.skillsService.createSkill(this.skill).subscribe(
+          skill => this.skillsService.skillCreated.emit(skill))
+      } else {
+
+        this.skillsService.updateSkill(this.skill.id, this.skill.nameSkill).subscribe(
+          skill => this.skillsService.skillUpdated.emit(skill))
+
+      }
+
+      
       this.modal.close('Ok click')
     }
       

@@ -23,7 +23,12 @@ export class TopbarComponent implements AfterViewInit{
 
 constructor(private modal: NgbModal, private authService: AuthService){
 
-  this.isAuthenticated = this.authService.verifyToken();
+  this.authService.verifyTokens().subscribe(
+    {
+      next: res => this.isAuthenticated = true,
+      error: error => this.isAuthenticated = false,
+    }
+  )
 
 }
 
