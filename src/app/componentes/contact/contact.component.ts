@@ -4,7 +4,6 @@ import { ContactService } from './contact.service';
 import { RecaptchaModule } from 'ng-recaptcha';
 
 import Toastify from 'toastify-js';
-import { RecaptchaFormsModule } from 'ng-recaptcha/lib/recaptcha-forms.module';
 
 @Component({
   selector: 'app-contact',
@@ -16,6 +15,7 @@ export class ContactComponent implements OnInit {
 
   captchaResponse = '';
   contactForm: FormGroup;
+  
   constructor(private fb: FormBuilder, private contactService: ContactService) {
       this.contactForm = this.fb.group({
         nombre: ['', Validators.required],
