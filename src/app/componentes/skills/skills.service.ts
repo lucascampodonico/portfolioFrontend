@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { EventEmitter, inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { API_URL } from 'src/config';
+import { Skill } from './skills.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -82,31 +84,36 @@ export class SkillsService {
     }
   ]
 
-constructor() { }
+  private token = localStorage.getItem('token');
+  private headers = new HttpHeaders().set('Authorization', 'Bearer '+this.token);
+  
+  skillDeleted = new EventEmitter();
+  skillCreated = new EventEmitter();
+  skillUpdated = new EventEmitter();
+  
+  private http = inject(HttpClient);
 
 
-  createSkill(skill:string){
-    function getRandomInt(min:number, max:number) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min) + min);
+  getAllSkill():Observable<any>{
+    return this.http.get(API_URL+"skill/all");
+  }
+
+  getSkill(id: number):Observable<any>{
+    return this.http.get(API_URL+"skill/"+id, {headers: this.headers});
+  }
+
+  createSkill(skill:Skill):Observable<any>{
+    return this.http.post(API_URL+"skill/register", skill, {headers: this.headers});
+  }
+
+  updateSkill(id: number, skill:Skill):Observable<any>{
+    const nameSkill = {
+      nameSkill: skill
     }
-    this.skills.push({id: getRandomInt(10,99999), skill})
+    return this.http.put(API_URL+"skill/"+id, nameSkill, {headers: this.headers});
   }
 
-  updateSkill(id:number, skill:string){
-    const foundSkill = this.skills.find(skill => skill.id === id)
-    if(foundSkill) {
-      foundSkill.skill = skill
-    }
-  }
-
-  deleteSkill(id:number){
-    console.log(id)
-  const i =  this.skills.findIndex(obj => obj.id === id )
-  console.log(i)
-  if (i !== -1) {
-    this.skills.splice(i, 1)
-  }
+  deleteSkillById(id:number):Observable<any>{
+    return this.http.delete(API_URL+"skill/"+id, {headers: this.headers})
   }
 }

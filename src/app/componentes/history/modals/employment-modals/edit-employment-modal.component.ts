@@ -3,6 +3,7 @@ import { Component, Input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgbActiveModal, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { EmploymentsService } from "../../services/employments.service";
+import Toastify from "toastify-js";
 
 @Component({ 
     selector: 'edit-employment-modal',
@@ -22,7 +23,7 @@ import { EmploymentsService } from "../../services/employments.service";
             <div class="modal-body">
               <div class="mb-3">
                 <label class="form-label">Employment: </label>
-                <input [(ngModel)]="employment.name" class="form-control" name="employment.name" />
+                <input [(ngModel)]="employment.nameEmployment" class="form-control" name="employment.nameEmployment" />
               </div>
 
               <div class="row">
@@ -90,7 +91,7 @@ import { EmploymentsService } from "../../services/employments.service";
 
       ngOnInit(){
         if(this.employment){
-          let dateOf = this.employment.dateOf.split('-');
+          let dateOf = this.employment.dateFrom.split('-');;
           let dateTo = '';
 
           if(this.employment.dateTo === 'present'){
@@ -122,21 +123,49 @@ import { EmploymentsService } from "../../services/employments.service";
       }
     
     saveChanges(){
-      this.employment.dateOf = `${this.dateOf.year}-${padNumber(this.dateOf.month)}-${padNumber(this.dateOf.day)}`;
+      this.employment.dateFrom = `${this.dateOf.year}-${padNumber(this.dateOf.month)}-${padNumber(this.dateOf.day)}`;
       
       if(this.toPresent){
         this.employment.dateTo = 'present';
       } else {
-        this.employment.dateTo = `${this.dateTo.year}-${this.dateTo.month}-${this.dateTo.day}`;
+        this.employment.dateTo = `${this.dateTo.year}-${padNumber(this.dateTo.month)}-${padNumber(this.dateTo.day)}`;
       }
       
       if(this.employment.id){
-        this.employmentsService.updateEmployment(this.employment.id, this.employment);
+        this.employmentsService.updateEmployment(this.employment.id, this.employment).subscribe({
+          next: employment => {
+            this.employmentsService.employmentUpdated.emit(employment);
+            this.modal.close('Ok click');
+          },
+          error: e => {
+            Toastify({
+              text:"Verifique los campos.",
+              className: "info",
+              position: "center",
+              style: {
+                background: "linear-gradient(to right, #e9a617, #e9a617)",
+              }
+              }).showToast( )
+          }
+        });
       } else {
-        this.employmentsService.createEmployment(this.employment);
+        this.employmentsService.createEmployment(this.employment).subscribe({
+          next: employment => {
+            this.employmentsService.employmentCreated.emit(employment)
+            this.modal.close('Ok click')
+          },
+          error: e => {
+            Toastify({
+              text:"Verifique los campos.",
+              className: "info",
+              position: "center",
+              style: {
+                background: "linear-gradient(to right, #e9a617, #e9a617)",
+              }
+              }).showToast( )
+          }
+        });
       }
-      
-      this.modal.close('Ok click')
     }
 
 

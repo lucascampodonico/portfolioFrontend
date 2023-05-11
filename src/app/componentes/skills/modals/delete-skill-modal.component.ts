@@ -19,7 +19,7 @@ import { SkillsService } from "../skills.service";
 		</div>
 		<div class="modal-body">
 			<p>
-				<strong>Are you sure you want to delete <span class="text-primary">{{skillName}}</span> skill?</strong>
+				<strong>Are you sure you want to delete <span class="text-primary">{{skill.nameSkill}}</span> skill?</strong>
 			</p>
 		</div>
 		<div class="modal-footer">
@@ -30,14 +30,14 @@ import { SkillsService } from "../skills.service";
 })
 export class DeleteSkillModal {
 
-  @Input() skillId!: number;
-  @Input() skillName!: string;
+  @Input() skill!: any;
 
 	constructor(public modal: NgbActiveModal, private skillsService: SkillsService) {
   }
 
   saveChanges(){
-    this.skillsService.deleteSkill(this.skillId)
+    this.skillsService.deleteSkillById(this.skill.id).subscribe(
+		res => this.skillsService.skillDeleted.emit(this.skill))
     this.modal.close('Ok click')
   }
 	

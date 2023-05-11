@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "lucas-campodonico"
+  },
+  "targets": {
+    "lucas-campodonico": {
+      "hosting": {
+        "portfolioFrontend": [
+          "lucas-campodonico"
+        ]
+      }
+    }
   }
 }

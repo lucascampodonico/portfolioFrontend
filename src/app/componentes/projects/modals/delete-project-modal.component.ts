@@ -1,15 +1,15 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { EmploymentsService } from "../../services/employments.service";
+import { ProjectsService } from "../projects.service";
 
 @Component({ 
-  selector: 'delete-employment-modal',
+  selector: 'delete-project-modal',
   imports: [FormsModule],
   standalone: true,
   template: `
          <div class="modal-header">
-			<h4 class="modal-title" id="modal-title">Employment deletion</h4>
+			<h4 class="modal-title" id="modal-title">Project deletion</h4>
 			<button
 				type="button"
 				class="btn-close"
@@ -19,7 +19,7 @@ import { EmploymentsService } from "../../services/employments.service";
 		</div>
 		<div class="modal-body">
 			<p>
-				<strong>Are you sure you want to delete <span class="text-primary">{{employment.nameEmployment}}</span> employment?</strong>
+				<strong>Are you sure you want to delete <span class="text-primary">{{project.nameProject}}</span> project?</strong>
 			</p>
 		</div>
 		<div class="modal-footer">
@@ -28,23 +28,24 @@ import { EmploymentsService } from "../../services/employments.service";
 		</div>
   `,
 })
-export class DeleteEmploymentModal {
+export class DeleteProjectModal {
 
-  @Input() employment!: any;
+	@Input() project!: any;
 
-	constructor(public modal: NgbActiveModal, private employmentsService: EmploymentsService) {
-  }
+	public projectsService = inject(ProjectsService)
+	public modal = inject(NgbActiveModal)
 
-  saveChanges(){
-    this.employmentsService.deleteEmploymentById(this.employment.id).subscribe({
+	saveChanges(){
+		this.projectsService.deleteProjectById(this.project.id).subscribe({
 		next: res =>{
-			this.employmentsService.employmentDeleted.emit(this.employment)
+			this.projectsService.projectDeleted.emit(this.project)
 			console.log(res)
 		},
 		error: e =>{
 			console.log(e)
 		}})
-    this.modal.close('Ok click')
-  }
+		this.modal.close('Ok click')
+	}
 	
 }
+

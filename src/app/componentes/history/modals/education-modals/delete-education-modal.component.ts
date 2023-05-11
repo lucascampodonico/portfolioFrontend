@@ -19,7 +19,7 @@ import { EducationsService } from "../../services/educations.service";
 		</div>
 		<div class="modal-body">
 			<p>
-				<strong>Are you sure you want to delete <span class="text-primary">{{educationName}}</span> education?</strong>
+				<strong>Are you sure you want to delete <span class="text-primary">{{education.nameEducation}}</span> education?</strong>
 			</p>
 		</div>
 		<div class="modal-footer">
@@ -30,14 +30,20 @@ import { EducationsService } from "../../services/educations.service";
 })
 export class DeleteEducationModal {
 
-  @Input() educationId!: number;
-  @Input() educationName!: string;
+  @Input() education!: any;
 
 	constructor(public modal: NgbActiveModal, private educationsService: EducationsService) {
   }
 
   saveChanges(){
-    // this.educationsService.deleteEducation(this.educationId)
+    this.educationsService.deleteEducationById(this.education.id).subscribe({
+		next: res =>{
+			this.educationsService.educationDeleted.emit(this.education)
+			console.log(res)
+		},
+		error: e =>{
+			console.log(e)
+		}})
     this.modal.close('Ok click')
   }
 	

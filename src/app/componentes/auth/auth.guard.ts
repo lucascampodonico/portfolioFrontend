@@ -9,5 +9,4 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> | boolean {
     return true;
   }
-  
 }
