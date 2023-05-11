@@ -501,6 +501,11 @@ fancybox
   color: #dedee0;
 }
 
+/* modal */
+
+.modal-content {
+  background-color: #00283a;
+}
 
 /* Toastify */
 

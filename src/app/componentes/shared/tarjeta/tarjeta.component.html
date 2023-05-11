@@ -1,21 +1,18 @@
 
-<div class="lc-main-card-frame lc-sidebar" (scroll)="onScroll($event)">
+<div class="lc-main-card-frame lc-sidebar">
     <div class="lc-main-card">
 
       <!-- card header -->
       <div class="lc-mc-header">
         <div class="lc-avatar-frame lc-mb-20">
-          <img class="lc-avatar" src="assets/img/avatar.jpg" alt="Avatar">
+          <img class="lc-avatar" src="{{card.imageUrl}}" alt="Avatar">
           <div *ngIf="!isAuthenticated" class="lc-dot"></div>
-          <div *ngIf="isAuthenticated" class="lc-dot-edit" placement="end" ngbTooltip="Change avatar">
-            <i class="bx bx-edit"></i>
-          </div>
+        </div>
 
-        </div>
-        <div *ngIf="isAuthenticated" class="lc-dot-edit2" placement="top" ngbTooltip="Edit Profile">
-          <i class="bx bx-edit"></i>
-        </div>
-        <h5 class="lc-name lc-mb-15">Lucas Campodonico</h5>
+        <button (click)="openUpdateCard(card)" *ngIf="isAuthenticated" class="lc-edit-absolute-topright" placement="bottom" ngbTooltip="Edit Profile">
+                <i class="bx bx-edit"></i>
+              </button>
+        <h5 class="lc-name lc-mb-15">{{card.name}}</h5>
         <div class="lc-label">I`m
           <span class="lc-typed-text">
             <!-- Words for rotation: js/main.js line 34 -->
@@ -28,10 +25,10 @@
 
       <!-- sidebar social -->
       <div class="lc-social">
-        <a href="https://www.linkedin.com/in/lucas-campodonico-aa15331b9/" target="_blank"><i class='bx bxl-linkedin'></i></a>
-        <a href="https://github.com/lucascampodonico" target="_blank"><i class='bx bxl-github' ></i></a>
-        <a href="#." target="_blank"><i class='bx bxl-gitlab' ></i></a>
-        <a href="#." target="_blank"><i class='bx bxl-twitter' ></i></a>
+        <a href="{{card.linkedin}}" target="_blank"><i class='bx bxl-linkedin'></i></a>
+        <a href="{{card.github}}" target="_blank"><i class='bx bxl-github' ></i></a>
+        <a href="{{card.gitlab}}" target="_blank"><i class='bx bxl-gitlab' ></i></a>
+        <a href="{{card.twitter}}" target="_blank"><i class='bx bxl-twitter' ></i></a>
       </div>
       <!-- sidebar social end -->
 
@@ -42,17 +39,17 @@
         <!-- country -->
         <li>
           <div class="lc-label">Residence:</div>
-          <div class="lc-label lc-label-light">Argentina</div>
+          <div class="lc-label lc-label-light">{{card.residence}}</div>
         </li>
         <!-- city -->
         <li>
           <div class="lc-label">City:</div>
-          <div class="lc-label lc-label-light">Concordia</div>
+          <div class="lc-label lc-label-light">{{card.city}}</div>
         </li>
         <!-- age -->
         <li>
           <div class="lc-label">Age:</div>
-          <div class="lc-label lc-label-light">28</div>
+          <div class="lc-label lc-label-light">{{card.age}}</div>
         </li>
       </ul>
       <!-- info end -->
@@ -65,5 +62,45 @@
       </div>
       <!-- action button end -->
 
+     <!-- popup -->
+     <div id="lc-order" class="lc-order">
+      <div class="lc-popup-content">
+
+        <div class="lc-popup-form-frame">
+          <h5 class="lc-mb-40">Write me a message</h5>
+             <form
+          [formGroup]="contactForm" (ngSubmit)="sendMail()"
+        >
+        <input
+              type="text"
+              name="nombre"
+              size="40"
+              formControlName="nombre"
+              placeholder="Name" 
+        />
+            <input
+              type="email"
+              name="email"
+              size="40"
+              formControlName="email"
+              placeholder="Email"
+              />
+            <textarea
+              name="mensaje"
+              cols="40"
+              rows="5"
+              formControlName="mensaje"
+              placeholder="Message"
+            ></textarea>
+          <div class="lc-form-bottom">
+            <re-captcha (resolved)="resolved($event)" siteKey="6Lf4J70lAAAAAC6J3U-z6UHzjl_nzPvW_Zzy8u2_"></re-captcha>
+          </div>
+          <button type="submit" class="lc-btn">
+            Send <i class="bx bx-right-arrow"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- popup end -->
     </div>
   </div>

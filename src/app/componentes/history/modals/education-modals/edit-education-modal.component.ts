@@ -3,6 +3,7 @@ import { Component, Input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgbActiveModal, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { EducationsService } from "../../services/educations.service";
+import Toastify from "toastify-js";
 
 @Component({ 
     selector: 'edit-education-modal',
@@ -22,7 +23,7 @@ import { EducationsService } from "../../services/educations.service";
             <div class="modal-body">
               <div class="mb-3">
                 <label class="form-label">Education: </label>
-                <input [(ngModel)]="education.name" class="form-control" name="education.name" />
+                <input [(ngModel)]="education.nameEducation" class="form-control" name="education.nameEducation" />
               </div>
 
               <div class="row">
@@ -81,15 +82,16 @@ import { EducationsService } from "../../services/educations.service";
     @Input() education!: any;
     @Input() title!: string;
 
+    toPresent:boolean = false;
     dateOf: any;
     dateTo: any;
-    toPresent:boolean = false;
+
 
       constructor(public modal: NgbActiveModal, private educationsService: EducationsService) {}
 
       ngOnInit(){
         if(this.education){
-          let dateOf = this.education.dateOf.split('-');
+          let dateOf = this.education.dateFrom.split('-');;
           let dateTo = '';
 
           if(this.education.dateTo === 'present'){
@@ -98,17 +100,17 @@ import { EducationsService } from "../../services/educations.service";
             dateTo = this.education.dateTo.split('-');
           }
           
-    
-        this.dateOf = {
-            year: parseInt(dateOf[0]),
-            month: parseInt(dateOf[1]),
-            day: parseInt(dateOf[2]),
-          }
-          this.dateTo = {
-            year: parseInt(dateTo[0]),
-            month: parseInt(dateTo[1]),
-            day: parseInt(dateTo[2]),
-          }
+          
+            this.dateOf = {
+              year: parseInt(dateOf[0]),
+              month: parseInt(dateOf[1]),
+              day: parseInt(dateOf[2]),
+            }
+            this.dateTo = {
+              year: parseInt(dateTo[0]),
+              month: parseInt(dateTo[1]),
+              day: parseInt(dateTo[2]),
+            }
         } else {
           this.education = {
             name: '',
@@ -117,19 +119,53 @@ import { EducationsService } from "../../services/educations.service";
             dateTo: ''
           }
         }
+       
       }
     
     saveChanges(){
-      this.education.dateOf = `${this.dateOf.year}-${padNumber(this.dateOf.month)}-${padNumber(this.dateOf.day)}`;
+      this.education.dateFrom = `${this.dateOf.year}-${padNumber(this.dateOf.month)}-${padNumber(this.dateOf.day)}`;
       
       if(this.toPresent){
         this.education.dateTo = 'present';
       } else {
-        this.education.dateTo = `${this.dateTo.year}-${this.dateTo.month}-${this.dateTo.day}`;
+        this.education.dateTo = `${this.dateTo.year}-${padNumber(this.dateTo.month)}-${padNumber(this.dateTo.day)}`;
       }
       
-      // this.educationsService.updateEducation(this.educationId, this.education)
-      this.modal.close('Ok click')
+      if(this.education.id){
+        this.educationsService.updateEducation(this.education.id, this.education).subscribe({
+          next: education => {
+            this.educationsService.educationUpdated.emit(education);
+            this.modal.close('Ok click');
+          },
+          error: e => {
+            Toastify({
+              text:"Verifique los campos.",
+              className: "info",
+              position: "center",
+              style: {
+                background: "linear-gradient(to right, #e9a617, #e9a617)",
+              }
+              }).showToast( )
+          }
+        });
+      } else {
+        this.educationsService.createEducation(this.education).subscribe({
+          next: education => {
+            this.educationsService.educationCreated.emit(education)
+            this.modal.close('Ok click')
+          },
+          error: e => {
+            Toastify({
+              text:"Verifique los campos.",
+              className: "info",
+              position: "center",
+              style: {
+                background: "linear-gradient(to right, #e9a617, #e9a617)",
+              }
+              }).showToast( )
+          }
+        });
+      }
     }
 
 

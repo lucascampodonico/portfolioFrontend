@@ -1619,9 +1619,7 @@ main card
 /******
   modal
 ******/
-.modal-content {
-  background-color: #00283a;
-}
+
 
 .modal-footer {
   border-top: 1px solid #e9a6174f;
@@ -1629,6 +1627,12 @@ main card
 .modal-header {
   border-bottom: 1px solid #e9a6174f;
 }
+
+.lc-form-bottom {
+  max-width: 305px;
+  margin: auto;
+}
+
 /***************************
 
 counters
