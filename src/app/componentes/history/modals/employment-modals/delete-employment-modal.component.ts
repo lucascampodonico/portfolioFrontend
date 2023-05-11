@@ -19,7 +19,7 @@ import { EmploymentsService } from "../../services/employments.service";
 		</div>
 		<div class="modal-body">
 			<p>
-				<strong>Are you sure you want to delete <span class="text-primary">{{employmentName}}</span> employment?</strong>
+				<strong>Are you sure you want to delete <span class="text-primary">{{employment.nameEmployment}}</span> employment?</strong>
 			</p>
 		</div>
 		<div class="modal-footer">
@@ -30,14 +30,20 @@ import { EmploymentsService } from "../../services/employments.service";
 })
 export class DeleteEmploymentModal {
 
-  @Input() employmentId!: number;
-  @Input() employmentName!: string;
+  @Input() employment!: any;
 
 	constructor(public modal: NgbActiveModal, private employmentsService: EmploymentsService) {
   }
 
   saveChanges(){
-    // this.employmentsService.deleteEmployment(this.employmentId)
+    this.employmentsService.deleteEmploymentById(this.employment.id).subscribe({
+		next: res =>{
+			this.employmentsService.employmentDeleted.emit(this.employment)
+			console.log(res)
+		},
+		error: e =>{
+			console.log(e)
+		}})
     this.modal.close('Ok click')
   }
 	

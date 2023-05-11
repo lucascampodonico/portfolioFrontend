@@ -1,5 +1,6 @@
-//export const API_URL = 'https://portfolio-backend-yx5v.onrender.com/api/v1/'
+//export const API_URL = 'https://lucas-campodonico-backend.onrender.com/api/v1/'
 export const API_URL = 'http://localhost:8080/api/v1/'
+
 export const firebaseConfig = {
     apiKey: "AIzaSyDiIYIqc5rgcQAl6cOmuxWP7T0t6fwcN00",
     authDomain: "lucas-campodonico.firebaseapp.com",
