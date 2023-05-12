@@ -14,11 +14,12 @@ app marcup
 body {
   background-color: #00151f;
 }
-
-.lc-app-frame {
-  border: solid 10px #00151f;
-  background-color: #02162b;
-  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.6);
+@media (min-width: 993px) {
+  .lc-app-frame {
+    border: solid 10px #00151f;
+    background-color: #02162b;
+    box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.6);
+  }
 }
 .lc-app-frame .lc-content-start:before {
   background-color: #00283a;
