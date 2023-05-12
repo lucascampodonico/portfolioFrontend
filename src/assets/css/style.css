@@ -1619,7 +1619,12 @@ main card
 /******
   modal
 ******/
+@media (min-width: 993px) {
+  .modal-content{
+  width: 540px
+}
 
+}
 
 .modal-footer {
   border-top: 1px solid #e9a6174f;

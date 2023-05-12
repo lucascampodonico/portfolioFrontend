@@ -10,6 +10,7 @@ import { BusinessCard } from "../card.interface";
 @Component({ 
     selector: 'edit-card-modal',
     imports: [FormsModule, NgbDatepickerModule, CommonModule],
+    styleUrls: ['./edit-card-modal.css'],
     standalone: true,
     template: `
             <div class="modal-header">
@@ -23,35 +24,35 @@ import { BusinessCard } from "../card.interface";
               ></button>
             </div>
             <div class="modal-body">
-              <div class="mb-3">
+              <div class="mb-3 me-1">
                 <label class="form-label">Name: </label>
                 <input [(ngModel)]="card.name" class="form-control" name="card.name" />
               </div>
-              <div class="mb-3">
+              <div class="mb-3 me-1">
                 <label class="form-label">Residence: </label>
                 <input [(ngModel)]="card.residence" class="form-control" name="card.residence" />
               </div>
-              <div class="mb-3">
+              <div class="mb-3 me-1">
                 <label class="form-label">City: </label>
                 <input [(ngModel)]="card.city" class="form-control" name="card.city" />
               </div>
-              <div class="mb-3">
+              <div class="mb-3 me-1">
                 <label class="form-label">Age: </label>
                 <input [(ngModel)]="card.age" class="form-control" name="card.age" />
               </div>
-              <div class="mb-3">
+              <div class="mb-3 me-1">
                 <label class="form-label">Linkedin: </label>
                 <input [(ngModel)]="card.linkedin" class="form-control" name="card.linkedin" />
               </div>
-              <div class="mb-3">
+              <div class="mb-3 me-1">
                 <label class="form-label">Github: </label>
                 <input [(ngModel)]="card.github" class="form-control" name="card.github" />
               </div>
-              <div class="mb-3">
+              <div class="mb-3 me-1">
                 <label class="form-label">Gitlab: </label>
                 <input [(ngModel)]="card.gitlab" class="form-control" name="card.gitlab" />
               </div>
-              <div class="mb-3">
+              <div class="mb-3 me-1">
                 <label class="form-label">Twitter: </label>
                 <input [(ngModel)]="card.twitter" class="form-control" name="card.twitter" />
               </div>

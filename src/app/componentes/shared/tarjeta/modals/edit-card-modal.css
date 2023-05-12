@@ -1,0 +1,8 @@
+@media (min-width: 923px){
+    .modal-body {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
