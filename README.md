@@ -1,27 +1,27 @@
-# PortfolioFrontend
+#Portfolio Frontend
+Este es mi portafolio desarrollado en Angular. En este proyecto, he utilizado una variedad de librerías para mejorar la funcionalidad y el diseño de la aplicación.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
+##Librerías Utilizadas
+A continuación, se describen las librerías más importantes que he utilizado en este proyecto:
 
-## Development server
+@fancyapps/ui: Una librería de componentes de interfaz de usuario que incluye componentes como un control deslizante, una ventana emergente y un carrusel.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+@juggle/resize-observer: Una librería para observar cambios en el tamaño de un elemento.
 
-## Code scaffolding
+@ng-bootstrap/ng-bootstrap: Una librería de componentes de Bootstrap 5 para Angular.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+animate.css: Una librería de animaciones CSS predefinidas.
 
-## Build
+boxicons: Una librería de iconos vectoriales.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+firebase: Una plataforma de desarrollo de aplicaciones móviles y web.
 
-## Running unit tests
+jquery: Una librería de JavaScript para manipular el DOM.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ng-recaptcha: Una librería para agregar soporte de captcha a formularios Angular.
 
-## Running end-to-end tests
+ngx-scrollbar: Una librería para agregar barras de desplazamiento personalizadas a aplicaciones Angular.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+toastify-js: Una librería de notificaciones para aplicaciones web.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+¡Gracias por visitar mi portafolio frontend!
