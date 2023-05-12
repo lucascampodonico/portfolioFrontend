@@ -1,8 +1,8 @@
 @import "toastify-js/src/toastify.css";
-body{
+/* body{
   background-color: #00151F !important;
   font-family: 'Inter', sans-serif !important;
-}
+} */
 
 @media screen and (max-width:992px){
 
