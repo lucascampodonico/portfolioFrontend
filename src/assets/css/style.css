@@ -1621,7 +1621,7 @@ main card
 ******/
 @media (min-width: 993px) {
   .modal-content{
-  width: 540px
+  min-width: 540px
 }
 
 }
