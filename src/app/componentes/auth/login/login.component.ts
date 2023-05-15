@@ -36,8 +36,8 @@ export class LoginComponent {
           next: d=> {
             localStorage.setItem('token', d.token);
             let mail = {
-              nombre: "",
-              email: "",
+              nombre: "Portfolio",
+              email: "admin@lucas.com",
               mensaje: "Inicio de sesion detectado.",
             }
             this.contactService.sendMail(mail).subscribe({
